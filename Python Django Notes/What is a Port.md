@@ -1,0 +1,55 @@
+- NOT a physical connection
+- a logical connection that is used by programs and services to exchange information
+	- specifically determines which program or service on a computer or server that is going to be used
+		- i.e. web page, ftp, or email
+- Have a unique number that identifies them
+	- 0 - 65535
+		- 80 - 443: web pages (HTTP, HTTPS)
+		- 21 - FTP (file transfer protocol)
+		- 25 - email (smtp)
+- a port is always associated with an IP address
+	- an identifier for a device on a network
+- ip and ports work together to exchange data on a network
+- exchanging info example:
+	- IP Address: determines the location of that server 
+	- Port #: determines which server or program on that server it wants to use
+- another example
+	- take port 80
+		- associated with http (web pages)
+		- whenever you access a web page you are using port 80
+	- google.com
+		- converts google.com to the ip address
+		- web browser/computer is going to add port 80 to the ip address
+		- the ip address is used to find the server, and then the port number will be used to see what service you want from the server, in this example that service is the web page/web server
+		- you will not see the ip address or port number being used, unless you use something like netstat
+- What is Netstat
+	- short for Network Statistics
+	- command line tool that is used to display the current network connections and port activity on your computer
+	- in powershell
+		- netstat -n
+			- displays active connections
+- Port numbers
+	- range from 0 - 65535
+	- assigned by IANA (Internet assigned Numbers Authority)
+	- broken down into 3 categories
+		- 0 - 1023
+			- System or Well-known ports
+				- i.e. 80,443,25,21
+		- 1024 - 49151
+			- User or Register Ports
+				- ports that can be registered by companies and developers for a particular service
+					- i.e. 1102 (adobe server), 1433 (microsoft sql server)
+		- 49152 - 65535
+			- dynamic or private ports
+				- client side ports that are free to use
+				- ports that your computer assigns temporarily to itself during a session
+					- i.e. when viewing a web page
+	- 1st and 2nd category are used on servers
+	- 3rd is used within the computer
+	- whenever computer wants to use service it assigns a number from 3rd category and links it to a server's 1st or 2nd category 
+	- though your computer can also act as an server
+		- you can configure your computer to accept incoming connections
+	- note: sometimes will see 443 when connecting to a website
+		- the difference
+			- 80 is http
+			- 443 is https
