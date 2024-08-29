@@ -1,0 +1,68 @@
+---
+created: <% tp.file.creation_date() %>
+---
+Following FlowAI turbo README.md
+- had to install rust, and setuptools
+	- rust & cargo error thrown
+		- forgot to get pic
+	- apparently setuptools are not preinstalled into venv environments anymore so must preinstall it in every venv environment
+	- ![[Pasted image 20240827121807.png]]
+	- 
+
+FLOW TURBO TECH DEMO
+- super app that has ai and deep learning models integrated
+	- working to eliminate the entire 85% of the day for sales rep
+	- eliminating 6 hours of manual work
+- 1 unified account that works for all Flow products
+	- 3 seperate repos and 3 seperate backend networks
+		- do not comingle the code
+- trying to consolidate sales tools into Flow Turbo, as the world's fastest UI/UX design (negating screen switching that sale reps do)
+- WE R NOT A CRM, salesforce can be exported as csv's
+	- csv's are analyzed by the ai model to give a representation of who is most likely to pickup the phone and even make a sale
+	- unified access integrations
+		-  integrated with google gmail and calendar and zoom
+- WE ARE TRYING TO GET RID OF BROWSERS EXTENSIONS AND OTHERS
+- CRM activity logging
+	- this is how sale reps get credit for making sales
+- biggest struggle for deveopment was getting data
+	- FLOW nebula is the data fetching application
+
+Random meeting
+- first priority 
+	- dev branch code has not been pushed dev
+	- codebase is consistent with dev branch
+		- dev branch is updated
+	- we shouldnt have a lot of trouble to make it work
+		- time to start integrating features that are being developed on separate branches
+- TASK
+	- AI flat files feature
+		- branch data will be shared with us later
+		- info about the feature/dataflow:
+				- Flow Turbo being used by sales rep
+				- they have csv with prospects
+					- can make api calls to get other data from other crms
+				- when sales rep uploads the CSV file, our content must make call to savecontent API
+					- problem: csv can come from many different sources (hubspot crm, zalesforce crm, zoominfo or other lead source databases)
+						- customer may not be comfortable with us handling their api integrations
+					- we want them to be able to make their own call to their own API
+					- problem: when uploading csv files from different resources, the format is different 
+					- pipeline
+						- csv upload
+						- goes to backend
+						- columns are extracted
+						- columns are mapped to our database columns
+							- this means we must normalize column name
+								- being mapped to a standard column name 
+						- columns are saved to the database
+					- integrated by another developer who left @Arnav Raviraj talk to him for any questions about the code
+				- initially the main branch was fully functional, but some changes to the database messed up the entire main branch
+				- so dev branch is completely broken, BUT individual features work
+					- ind features = API
+		- focus on familiarizing with the database
+		- UP TO US TO DECIDE THE ORDER OF APPROACHING THE PROBLEM
+			- WE WILL MEET EVERYDAY take your time, go through the architecture diagram
+	- first thing the broke was the lift of contact, because the API broke and the frontend was not able to retrieve the contact because the primary key changed
+- familiarize with product features and dataflow
+	- https://flow-ai-us.atlassian.net/wiki/spaces/~63b326cbd3aeefa4054316d8/pages/336330808/Software+Requirements+Document+for+Flow+Turbo
+- MY SCRUM MASTER IS @Chitra Chaundhari 
+- rishabh, manogna, het, rutul, coordinating with Kabilan
