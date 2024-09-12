@@ -1,5 +1,5 @@
 ---
-created: <% tp.file.creation_date() %>
+created: 2024-09-11 17:55
 tags:
   - CS157C
   - SJSU
