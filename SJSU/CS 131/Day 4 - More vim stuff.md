@@ -1,0 +1,58 @@
+more unix commands
+- `head`
+	- displays the first 10 lines of text
+	- `head -n 25 text.txt`
+		- displays the first 25 lines of text.txt
+- `lscpu`
+	- lists information about the cpu
+- `df` gather disk information
+- `echo` - **IMPORTANT** prints to terminal
+	- ![[Pasted image 20240904093736.png]]
+		- note output when using backticks or quotes
+		- good for just displaying things in the standardout
+- `hostnamectl` - displays current system information, mainly the linux distro being ran
+
+vim commands
+- `i` inserts at the cursor position
+- `I` insert at the beginning of the line
+- `a` append after the cursor position
+- `A` append at the end of the line
+- `o` insert right after the current line
+- `O` insert right before the current line
+- `:w` saves the file
+- `:w!` forces the file to be saved
+- `:q` quit and display the message if file modified
+- `:q!` quit without saving changes
+- `:wq` write and quit
+- `:x` shorthhand for `:wq`
+- `:n` positon the cursor at line n, where n is a number
+- `:$` positions the cursor on the last line
+- `:set number` turn on line numbering
+- `:set nonu` nnnnn
+- deleting in vim
+	- `x` delete a character
+	- `dw` delete a word
+	- `dd` delete a line
+	- `D` delete from the current position
+	- `:/<character>` start a forward search. use 'n' to move to the next
+	- `:?<character>` start a reverse search 
+- copying and pasting in vim
+	- `yy` Yank (copy) the current line
+	- `p` past the most recent copy
+- undo/redp
+	- `u` Undo
+	- `Ctrl-R` Redo
+- search and replace
+	- `:%s/<pattern>/replace/g` global search/replace
+	- `:%s/ctrl+V ctrl+M//g`
+	- `/<string>` immediate search
+- test
+	- `wc -l searchfile.txt` 
+		- prints line count
+			- good for comparing if copied files are equal
+			- prints byte size is a good way to check aswell
+				- quickest way to check if copied file copied correctly
+
+Assignment_2
+- A. 8 occurences, all contained within the word "world"
+- B. 3 occurences, all contained within the word "hundred"
