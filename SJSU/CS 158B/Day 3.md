@@ -1,0 +1,149 @@
+
+SNMP tools will be used within this class
+
+General stuff:
+
+Kinda of Networks:
+- ![[Pasted image 20240904193106.png]]
+- ![[Pasted image 20240904193355.png]]
+-  ![[Pasted image 20240904193553.png]]
+- ![[Pasted image 20240904193627.png]]
+	- comcast
+-  ![[Pasted image 20240904193801.png]]
+- FCAPS Model
+	- one uniform model that can be applied to any network 
+	- Fault Configuration Accounting Performance Security
+		- called the 5 pillars of network management 
+	- Fault Management
+		- Goal: Detect, Isolate, and correct any abnormal operation
+		- Fault:= an abnormal condition that requires management attention (or action) to repair
+			- Fault != Single Error
+				- network can handle that
+		- Example: Link Down, Port Down, Device Down
+	- Configuration Management
+		- Goal: Configure all hosts and devices for their intended behavior
+			- Drives network functionality
+		- Originall, almost always humans involved
+		- nowadays could be either
+			- human driven or
+			- Controller* driven
+		- Controller: Higher level management software
+		- Example:
+			- port disable/enable
+			- configure VLAN
+			- configure tunnel
+	- Accounting Management
+		- Goal: gather all kinds of data from all hosts and devices
+		- alternate names: Stats/ Metrics / telemetry
+		- Example: Bytes sent/recieved, Packets sent/received
+	- Performance Management
+		- goal: ensure network performance remains at acceptable levels
+			- tracks network health, quality-of-service, User experience
+		- Example: Throughput, Latency, Loss rate, Utilization
+			- THROUGHPUT VS LATENCY
+				- Throughput: amount of data received and transmitted
+					- what done in how much time
+						- i.e. 100 pancakes per hour is throughput
+						- i.e. packets per second that we are processing
+				- Latency: the time between each
+					- how long to do work
+						- i.e. 1 pancake takes 30 seconds
+						- amount of time it takes router to process the packet
+		- SLA/SLO
+			- Service Level Agreement
+				- between consumer and provider (2 different entities)
+				- "provider agrees something to the consumer"
+				- i.e. "the service should be available 99% of the time"
+					- usually comes with clauses 
+			- Service Level Objective
+				- internal to the provider 
+				- "provider makes their own goals for themselves"
+				- i.e. "AT&T wants to have their own network up 99% of the time"
+		- connected to accounting because we need the data from there to assess performance
+	- Security Management
+		- Goal: to keep network secure
+			- all access to the network are authenticated and authorized
+			- generation, distribution, storing encryption keys
+		- Example: Security Rules
+			- i.e. when opening a file the system will check if we have permission to open the file
+		- Usually a lot of rules
+		- programmed into the host server and routers
+	- ![[Pasted image 20240904195645.png]]
+		- a very general model, will try to use to analyze networks
+			- ask "what is the fcaps of this network"
+
+	Network Management Systems (NMS)
+	- Collection of tools for network configuration and monitoring that is integrated and unified in the following sense:
+		- A single operator interface with a powerful but user friendly set of commands for performing most or all network management tasks
+		- A minimum amount of separate equipment is necessary
+			- That is, most of the hardware and software required for network management is incorporated into the existing user equipment
+	Network Management Entity (NME)
+	- Each device contains all collection of software deveoted to the NM task, often known as NME. each NME performs the following: 
+		- collect stats on communication and network related activities
+		- store stats locally
+		- respond to commands from the network control center (NCC), e.g.,
+			- Transmit collected stats to the NCC
+			- Change a parameter (i.e. timer)
+			- provide status info (i.e. parameter values)
+			- generate artificial traffic to perform a test
+		- send message to NCC when local conditions undergo significant change
+	network management information
+	- static: information that seldom changes
+		- e.g. router id, number off ports
+	- Dynamic: related to the events in a network
+		- e.g. forwarding state of a port in a switch
+	- Statistical: FREQUENTLY changing information
+		- e.g. number of bytes sent/received, number of packets sent/received 
+- Network Monitoring Configuration
+	- Monitoring Application: Functions of network monitorying that are visible to the user
+		- e.g. faults, performance
+	- Manager function: retrieves information from other elements
+	- Agent function: Gather and records management information for on or more network elements and communicates that to monitor
+	- Managed objects: Management information representing something
+	- an optionally....
+		- Monitoring Agent: Aggregates and possible summarizes
+			- agent to the monitoring application\
+- Polling
+	- Polling is a request-response interaction between the manager and the agent
+- Event Reporting 
+	- With event-reporting, the initiative is with the agent
+		- manager is the role of the listener, waiting for the incoming information
+	- A report could be:
+		- periodic
+			- with a preconfigured interval
+			- .. that can be modified by the manager
+		- significant event (e.g. state change)
+		- unusual event (e.g. a fault)
+- Performance Monitoring Indicators
+	- Service-Oriented 
+		- Availbility: % of time network or application is available to the users 
+		- response time
+			- how quickly you hear back from the server 
+		- accuracy
+			- making a query, am i okay with little bit of error or no
+	- efficiency-Oriented
+		- Throughput: events per unit time
+		- Utilization: 5 of theoretical capacity of resource
+- Performance Quest
+	- is traffic evenly distributed among the network hosts or are there source-destination pairs with unusually heavy traffic?
+	- What is the percentage of each type of packet? are some packet types of unusually high frequency, indicating an error, or an inefficient protocol?
+	- What is the distribution of data packet size?
+	- which host, port is the biggest source of traffic?
+	- which host, port is the biggest sink of traffic?
+		- ^^ VERY important questions that you should be able to answer
+- Fault Monitoring
+	- Problems:
+		- Unobservable faults
+			- e.g. 
+- Problems:
+	- What is the maximum yearly downtime for 3-nine SLA?
+		- i.e. SLA = 99.9% uptime = 3-nine uptime
+		- ![[Pasted image 20240904202238.png]]
+		- ![[Pasted image 20240904202546.png]]
+		- This is uptime coverage is done by software that manages the servers
+			- comes down to distributed systems design 
+	- There are 100 computers in a cluster. The probability of failure of a single computer is 0.1%. Assuming all computers are independent, what is the probability that there is at least one failure in the cluster?
+		- 'at least 1' so any probability that has at least one failure
+			- 1 - prob(no failure)
+			- ![[Pasted image 20240904203028.png]]
+			- 
