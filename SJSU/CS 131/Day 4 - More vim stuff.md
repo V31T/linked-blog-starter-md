@@ -54,5 +54,9 @@ vim commands
 				- quickest way to check if copied file copied correctly
 
 Assignment_2
-- A. 8 occurences, all contained within the word "world"
-- B. 3 occurences, all contained within the word "hundred"
+- 1. 8 occurences, all contained within the word "world"
+	- ![[Pasted image 20240916100858.png]]
+- 2. 3 occurences, all contained within the word "hundred"
+	- ![[Pasted image 20240916101020.png]]
+- 
+	- ![[Pasted image 20240916100954.png]]
