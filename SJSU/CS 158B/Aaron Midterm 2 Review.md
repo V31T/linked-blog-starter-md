@@ -102,3 +102,82 @@ Sample Types
 - problem ^ manager does not know the timestamps, to get around this you must ask for the timestamps and then use it in the next getRequest
 
 ## Prometheus 
+- metrics-based monitoring system
+- Designed to track overall system health
+- **Prometheus cares that there were 15 requests in the last minute that took 4 seconds to handle, resulted in 40 database calls, 17 cache hits, and 2 purchases by customers**
+Scraping
+- gets list of targets to monitor by sending HTTP requests called a scrape
+Pull Based System
+- what this means idk
+Storage
+- prometheus stores data locally in a custom database
+- does NOT distribute data
+Data types:
+- Counter
+- Gauge
+- Summary
+- Histogram
+Exporters
+- software that is deployed right beside the target application
+	- prometheus sends request to Exporter, Export returns response 
+	- i.e.
+Histogram
+- a set of counters formatted into buckets (1ms, 10ms, 25ms)
+	- tracks number of events that fall into each bucket
+- uses these counts to calculate percentiles, quantiles, and other distribution-based metrics
+Summary
+- samples observations like a histogram but does calculations directly on the client side (in the application) before they are sent to prometheus
+Node Exporter
+- Most prominent Infrastructure monitoring
+- exposes machine-level metrics like CPU Memory or Disk Space
+- monitors the machine, not individual processes or services
+node_filesystem_size_bytes
+- gauge metric indicating the total size of the filesystem in bytes
+
+Dynamic Service  Discovery (prometheus.yml)
+- keeps track of monitor targets in a dynamic environment without needing to manually update prometheus.yml
+- auto detects new targets and adds any new instances/services that match the specified criteria
+- file-based, http based, consul based, ec2 based:
+	- file based: 
+		- doesnt use network, reads targets from local json or yaml files
+	- http based: 
+		- fetches targets using HTTP, must be in JSON format
+	- consul based:
+		- consul is a service discovery mechanism form HashiCorp
+		- consul agent runs on each machine and talk among themselves
+	- Ec2 based
+		- elestic compute cloud provides vms with built in service discovery 
+- PromQL: Prometheus Query Language
+	- Labels help in arbitrary aggregation
+
+gauge: a metric that represents a single numerical value that can go up or down
+	i.e. node_filesystem_size_bytes from Node Exporter is a guage, keeps track of the size of below labels
+labels: device (NAME OF STORAGE DEVICE), fstype: filesystem type, mountpoint (directory where filesystem is mounted )
+- labels help to differentiate between various filesystems, allowing prometheus to monitor each individually
+counter: like guage but only increases
+
+- to calc network bytes received per second using the last 5 minute of data?
+	- use: rate(node_network_receive_bytes_total[5m])
+- to aggregate network receive bytes across all interfaces?
+	- sum without(device)(rate(node_network_receive_bytes_total[5m]))
+- the network receive bytes only for a specific interface?
+	- rate(node_network_receive_bytes_total{device="eth0"}[5m])
+- compute average metric value by dividing sum rate with count rate
+	- rate(delay_seconds_sum[3m]/rate(delay_seconds_count[3m]))
+Histogram examples
+- calc 90th percentile value of a metric
+	- histogram_quantile(.9, rate(latency,seconds_bucket[5m]))
+Aggregators:
+- `sum`
+	- most common, adds all values in a group and returns that as the value for the group
+		- `sum without(fstype, mountpoint)(node_filesystem_size_bytes)`
+- `by`
+	- specifies labels to keep
+		- `sum by9device, instance, job)(node_filesystem_size_bytes)`
+		- same output as above
+- `count`
+	- counts the number of time series in a group
+- `min and max`
+	- return the min or max values within a group
+- `topk and bottomk`
+	- return k topmost or k bottommost values of a group
