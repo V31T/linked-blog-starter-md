@@ -1,0 +1,18 @@
+## RMON (remote monitoring)
+- extends SNMP, allows remote monitoring of a subnetwork rather than just devices, designed to be efficient and provide valuable insights without significantly increasing network load.
+	- HOW? defines a MIB to monitor a network from a single device to an entire subnetwork
+	- can store and can filter what is stored for future analysis
+- Goals
+	- RMON will collect and store data even if the manager isn't online, allows the manger to access this data later.
+	- Proavtively monitors by diagnosing and logging performance data
+	- Can perform analysis on data so manager doesnt have to
+	- allows multiple managers to monitor the network simultaneously
+- Configuration
+	- RMON MIBs are organized into functional groups
+		- control table: configured and specify what data to collect
+		- data table: where collected data is stored
+	- control table rows can be modified/deleted
+- table management and structure
+	- Control-Data Relationship: each row in control table has an associated row in data tables
+	- Combined Tables: if single control row maps to single data row, control and data can be combined for efficiency
+	- action Invocation: some RMON MIB objects represent actions, allowing the manager to trigger specific actions by settings values on these objects

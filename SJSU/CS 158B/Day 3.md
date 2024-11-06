@@ -3,7 +3,7 @@ SNMP tools will be used within this class
 
 General stuff:
 
-Kinda of Networks:
+Kinds of Networks:
 - ![[Pasted image 20240904193106.png]]
 - ![[Pasted image 20240904193355.png]]
 -  ![[Pasted image 20240904193553.png]]

@@ -50,6 +50,9 @@ tags:
 		- 32 - n host bits (128 - n for IPv6)
 
 ### Router's Job
+- A switch forward frames in a [Virtual] Local Area Network ([V]LAN)
+	- usually a subnetwork
+- A router forward packets **among** [V]LANs
 - Multilayer switch
 	- Does job of switch and router
 - VLAN A host talks to VLAN B host through multilayer switch
@@ -73,7 +76,8 @@ tags:
 - Data plane: forwarding IP datagrams
 	- Usually in hardware
 	- Usually at line rate
-	- forward packets based on forwarding information base (FIB)
+	- **forward packets based on forwarding information base (FIB)**
+		- performs LPM on each packet
 - Control Plane: information from other routers
 	- Usually via routing protocols i.e. RIP, IS-IS. OSPF, BGP
 	- receive information from other routers
